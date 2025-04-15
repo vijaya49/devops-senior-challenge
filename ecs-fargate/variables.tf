@@ -33,3 +33,8 @@ variable "hosted_zone_id" {
   description = "Hosted Zone ID in Route 53"
   type        = string
 }
+
+variable "image_tag" {
+  description = "The image tag (commit hash) to deploy"
+  type        = string
+}

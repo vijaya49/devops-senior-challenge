@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "task" {
 
   container_definitions = jsonencode([{
     name      = var.app_name
-    image     = "${aws_ecr_repository.simpletimeservice.repository_url}:latest"
+    image     = "${aws_ecr_repository.simpletimeservice.repository_url}:${var.image_tag}" # Use the dynamic image tag"
     cpu       = 256
     memory    = 512
     essential = true
