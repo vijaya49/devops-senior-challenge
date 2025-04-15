@@ -39,9 +39,7 @@ jobs:
         docker push ${{ steps.login-ecr.outputs.registry }}/${ECR_REPOSITORY}:latest
 
     - name: Terraform Init
-      working-directory: ./ecs-fargate
       run: terraform init
 
     - name: Terraform Apply
-      working-directory: ./ecs-fargate
       run: terraform apply -auto-approve
