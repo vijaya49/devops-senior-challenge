@@ -8,3 +8,4 @@ module "ecs_fargate" {
   hosted_zone_id      = "Z02038983P10ZA17B5SN8"
   container_port      = 80
 }
+#
