@@ -2,6 +2,31 @@ resource "aws_ecs_cluster" "main" {
   name = "${var.app_name}-cluster"
 }
 
+# resource "aws_ecs_task_definition" "task" {
+#   family                = "${var.app_name}-task"
+#   execution_role_arn    = aws_iam_role.ecs_task_execution_role.arn
+#   task_role_arn         = aws_iam_role.ecs_task_role.arn
+#   network_mode          = "awsvpc"
+#   requires_compatibilities = ["FARGATE"]
+#   cpu                   = "256"
+#   memory                = "512"
+
+#   container_definitions = jsonencode([{
+#     name      = var.app_name
+#     image     = "${aws_ecr_repository.simpletimeservice.repository_url}:${var.image_tag}" # Use the dynamic image tag"
+#     cpu       = 256
+#     memory    = 512
+#     essential = true
+#     portMappings = [{
+#       containerPort = var.container_port
+#       hostPort      = var.container_port
+#       protocol      = "tcp"
+#     }]
+#   }])
+
+#   depends_on = [aws_security_group.ecs_sg]
+# }
+
 resource "aws_ecs_task_definition" "task" {
   family                = "${var.app_name}-task"
   execution_role_arn    = aws_iam_role.ecs_task_execution_role.arn
@@ -13,7 +38,7 @@ resource "aws_ecs_task_definition" "task" {
 
   container_definitions = jsonencode([{
     name      = var.app_name
-    image     = "${aws_ecr_repository.simpletimeservice.repository_url}:${var.image_tag}" # Use the dynamic image tag"
+    image     = "${aws_ecr_repository.simpletimeservice.repository_url}:${var.image_tag}" # Use the dynamic image tag
     cpu       = 256
     memory    = 512
     essential = true
@@ -26,6 +51,10 @@ resource "aws_ecs_task_definition" "task" {
 
   depends_on = [aws_security_group.ecs_sg]
 }
+
+
+
+
 
 resource "aws_ecs_service" "service" {
   name            = "${var.app_name}-service"

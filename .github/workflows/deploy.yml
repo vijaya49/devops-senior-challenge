@@ -44,10 +44,10 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
-    - name: Terraform farmat
+    - name: Terraform Format
       run: terraform fmt 
 
-    - name: Terraform validate
+    - name: Terraform Validate
       run: terraform validate
 
     - name: Terraform Plan
