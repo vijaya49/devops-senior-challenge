@@ -4,7 +4,7 @@ FROM public.ecr.aws/docker/library/python:3.11
 WORKDIR /app
 
 # Copy only the app folder content into the container
-COPY simple-time-service/ .
+COPY . .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
