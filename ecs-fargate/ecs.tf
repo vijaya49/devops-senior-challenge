@@ -58,4 +58,7 @@ resource "aws_ecs_service" "service" {
     container_name   = var.app_name
     container_port   = var.container_port
   }
+  depends_on = [
+    aws_lb_listener.https_forward
+  ]
 }

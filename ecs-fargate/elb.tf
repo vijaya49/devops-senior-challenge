@@ -79,6 +79,7 @@ resource "aws_lb_listener" "http_redirect" {
 
 # ✅ UPDATED: HTTPS Listener should reference the validated cert
 resource "aws_lb_listener" "https_forward" {
+  depends_on = [ aws_acm_certificate_validation.valid, aws_acm_certificate.cert ]
   load_balancer_arn = aws_lb.main.arn
   port              = 443
   protocol          = "HTTPS"
