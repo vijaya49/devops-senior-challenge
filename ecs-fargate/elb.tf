@@ -1,9 +1,9 @@
 resource "aws_lb" "main" {
-  depends_on = [
-  aws_vpc.main,
-  aws_subnet.public[*],
-  aws_subnet.private[*]
-]
+#   depends_on = [
+#   aws_vpc.main,
+#   aws_subnet.public[*],
+#   aws_subnet.private[*]
+# ]
 
   name               = "${var.app_name}-alb"
   internal           = false
@@ -15,11 +15,11 @@ resource "aws_lb" "main" {
 }
 
 resource "aws_lb_target_group" "blue" {
-  depends_on = [
-  aws_vpc.main,
-  aws_subnet.public[*],
-  aws_subnet.private[*]
-]
+#   depends_on = [
+#   aws_vpc.main,
+#   aws_subnet.public[*],
+#   aws_subnet.private[*]
+# ]
 
   name     = "${var.app_name}-tg-b"
   port     = var.container_port
@@ -39,11 +39,11 @@ resource "aws_lb_target_group" "blue" {
 }
 
 resource "aws_lb_target_group" "green" {
-  depends_on = [
-  aws_vpc.main,
-  aws_subnet.public[*],
-  aws_subnet.private[*]
-]
+#   depends_on = [
+#   aws_vpc.main,
+#   aws_subnet.public[*],
+#   aws_subnet.private[*]
+# ]
 
   name     = "${var.app_name}-tg-g"
   port     = var.container_port
@@ -107,11 +107,11 @@ resource "aws_lb_listener" "tf_ecs_listener_green" {
 }
 
 resource "aws_security_group" "ecs_elb_sg" {
-  depends_on = [
-  aws_vpc.main,
-  aws_subnet.public[*],
-  aws_subnet.private[*]
-]
+#   depends_on = [
+#   aws_vpc.main,
+#   aws_subnet.public[*],
+#   aws_subnet.private[*]
+# ]
 
   name        = "elb_sg"
   description = "ELB security group for ECS URL"
