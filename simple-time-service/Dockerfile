@@ -18,6 +18,7 @@ EXPOSE 80
 # Start the app using the start script
 CMD ["./start.sh"]
 
+
 # FROM public.ecr.aws/docker/library/python:3.11
 # WORKDIR /app
 # RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
