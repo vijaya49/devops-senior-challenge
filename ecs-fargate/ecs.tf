@@ -33,6 +33,7 @@ resource "aws_ecs_task_definition" "task" {
 
 
 resource "aws_ecs_service" "service" {
+  depends_on = [ aws_vpc.main, aws_subnet.private, aws_subnet.public ]
  # depends_on = [ aws_ecs_task_definition.task ]
   name            = "${var.app_name}-service"
   cluster         = aws_ecs_cluster.main.id
@@ -41,7 +42,8 @@ resource "aws_ecs_service" "service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = var.subnet_ids
+    #subnets         = var.subnet_ids
+    subnets = [aws_subnet.private[0].id, aws_subnet.private[1].id]
     security_groups = [aws_security_group.ecs_sg.id]
     assign_public_ip = true
   }

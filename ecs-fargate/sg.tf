@@ -1,7 +1,8 @@
 resource "aws_security_group" "ecs_sg" {
   name        = "${var.app_name}-sg"
   description = "Allow traffic to ECS tasks and ALB"
-  vpc_id      = var.vpc_id
+  # vpc_id      = var.vpc_id
+  vpc_id = aws_vpc.main.id
 
   ingress {
     from_port       = var.container_port
