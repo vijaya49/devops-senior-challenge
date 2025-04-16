@@ -8,15 +8,15 @@ variable "region" {
   type        = string
 }
 
-variable "vpc_id" {
-  description = "VPC ID"
-  type        = string
-}
+# variable "vpc_id" {
+#   description = "VPC ID"
+#   type        = string
+# }
 
-variable "subnet_ids" {
-  description = "List of subnet IDs for Fargate and ALB"
-  type        = list(string)
-}
+# variable "subnet_ids" {
+#   description = "List of subnet IDs for Fargate and ALB"
+#   type        = list(string)
+# }
 
 variable "container_port" {
   description = "Port on which the container listens"
