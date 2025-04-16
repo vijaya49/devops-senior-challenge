@@ -6,6 +6,6 @@ resource "aws_ecr_repository" "simpletimeservice" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
