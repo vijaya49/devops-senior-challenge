@@ -20,8 +20,8 @@ resource "aws_ecs_task_definition" "task" {
     essential = true
     portMappings = [{
       containerPort = var.container_port
-      # hostPort      = var.container_port
-      hostPort = 80
+      hostPort      = var.container_port
+      # hostPort = 80
       protocol      = "tcp"
     }]
     logConfiguration = {
