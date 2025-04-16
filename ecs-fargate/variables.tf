@@ -18,6 +18,7 @@ variable "region" {
 #   type        = list(string)
 # }
 
+
 variable "container_port" {
   description = "Port on which the container listens"
   type        = number

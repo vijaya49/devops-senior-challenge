@@ -33,7 +33,12 @@ resource "aws_ecs_task_definition" "task" {
 
 
 resource "aws_ecs_service" "service" {
-  depends_on = [ aws_vpc.main, aws_subnet.private, aws_subnet.public ]
+  depends_on = [
+  aws_vpc.main,
+  aws_subnet.public[*],
+  aws_subnet.private[*]
+]
+
  # depends_on = [ aws_ecs_task_definition.task ]
   name            = "${var.app_name}-service"
   cluster         = aws_ecs_cluster.main.id

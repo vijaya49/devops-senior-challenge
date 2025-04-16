@@ -1,4 +1,10 @@
 resource "aws_security_group" "ecs_sg" {
+  depends_on = [
+  aws_vpc.main,
+  aws_subnet.public[*],
+  aws_subnet.private[*]
+]
+
   name        = "${var.app_name}-sg"
   description = "Allow traffic to ECS tasks and ALB"
   # vpc_id      = var.vpc_id
