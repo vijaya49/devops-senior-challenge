@@ -8,7 +8,7 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: simpletimeservice
+  ECR_REPOSITORY: simptimeserv-new
 
 jobs:
   build-and-deploy:
