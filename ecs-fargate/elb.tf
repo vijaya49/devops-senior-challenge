@@ -113,7 +113,7 @@ resource "aws_security_group" "ecs_elb_sg" {
 #   aws_subnet.private[*]
 # ]
 
-  name        = "elb_sg"
+  name        = "${var.app_name}-elb_sg"
   description = "ELB security group for ECS URL"
   #vpc_id      = var.vpc_id
   vpc_id = aws_vpc.main.id
