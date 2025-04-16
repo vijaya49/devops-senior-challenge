@@ -170,4 +170,6 @@ docker rm <container_id>
 
 ## 📄 License
 
-MIT License
+VIJAYARAMARAO SIRIGIRI
+vijay49m@gmail.com
++91-6301773727
