@@ -367,7 +367,7 @@ A short SHA-based image tag prefixed with `ecs-`, e.g. `ecs-abc12`.
 - Amazon ECR repository created (default: `simptimeserv-new`)
 
 ---
-# Security Improvement: Terraform Assume Role
+### Security Improvement: Terraform Assume Role
 
 - Use long-term AWS credentials (Access Key & Secret Key) with limited permissions.
 - Assume a role that has the necessary permissions to create/manage AWS resources.
