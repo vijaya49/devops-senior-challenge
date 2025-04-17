@@ -420,6 +420,14 @@ terraform apply -var="image_tag=$IMAGE_TAG"
 
 ---
 
+## ✅ Imporovements we can do
+
+- Due to time constraints, I developed this module with only the minimum required features. If I get sufficient time on this project, I would be happy to enhance it further with more features and make it more robust and reliable.
+- Currently, the application is running as the root user. I have tested it locally with a non-root user and it worked well. However, I'm encountering some issues while deploying it on ECS Fargate with a non-root user, which I need to explore and troubleshoot further.
+
+---
+
+
 ## 🧑‍💻 Contributors
 
 - VIJAYARAMA RAO SIRIGIRI
