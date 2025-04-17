@@ -293,7 +293,7 @@ This module was crafted for internal DevOps projects but is reusable for any ECS
 ---
 
 
-# Simple Time Service on AWS ECS Fargate with Terraform
+# CI-CD: Simple Time Service on AWS ECS Fargate with Terraform
 
 This repository contains a sample microservice called `simple-time-service` deployed on AWS ECS Fargate using Infrastructure as Code (IaC) with Terraform. CI/CD pipelines are managed using GitHub Actions.
 
