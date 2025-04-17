@@ -293,12 +293,138 @@ This module was crafted for internal DevOps projects but is reusable for any ECS
 ---
 
 
+# Simple Time Service on AWS ECS Fargate with Terraform
 
+This repository contains a sample microservice called `simple-time-service` deployed on AWS ECS Fargate using Infrastructure as Code (IaC) with Terraform. CI/CD pipelines are managed using GitHub Actions.
 
-## 📄 License
+## 🧭 Overview
 
-VIJAYARAMARAO SIRIGIRI
+This project demonstrates:
 
-vijay49m@gmail.com
+- Dockerizing a simple application (`simple-time-service`)
+- Deploying it to AWS ECS Fargate
+- Managing infrastructure with Terraform
+- CI/CD using GitHub Actions
 
-+91-6301773727
+## 📁 Folder Structure
+
+```
+.
+├── .github/workflows       # GitHub Actions workflows
+│   ├── deploy.yml          # Triggers on app source code changes
+│   └── terraform.yml       # Triggers on infrastructure code changes
+├── ecs-fargate             # (Optional) Contains ECS-specific definitions if any
+├── simple-time-service     # Source code for the time service (Node.js, Python, etc.)
+├── main.tf                 # Terraform main configuration
+├── variables.tf            # Input variable definitions for Terraform
+├── versions.tf             # Terraform provider and version constraints
+├── README.md               # Project documentation (You're here!)
+```
+
+---
+
+## 🚀 Workflows
+
+### 1. **Application Deployment Workflow (`deploy.yml`)**
+
+**Trigger:**  
+Runs automatically on changes to files inside the `simple-time-service` directory.
+
+**What it does:**
+
+- Builds a Docker image for the service
+- Tags and pushes the image to Amazon ECR
+- Initializes and validates Terraform
+- Applies Terraform configuration with the updated image tag to ECS
+
+**Image Tag Format:**  
+A short SHA-based image tag prefixed with `ecs-`, e.g. `ecs-abc12`.
+
+### 2. **Infrastructure Deployment Workflow (`terraform.yml`)**
+
+**Trigger:**
+
+- Runs automatically when any `.tf` file is changed or committed
+- Can also be triggered manually via the **workflow dispatch** feature in GitHub
+
+**What it does:**
+
+- Initializes Terraform
+- Formats and validates the code
+- Plans and applies infrastructure changes
+
+---
+
+## 🔧 How to Use
+
+### Prerequisites
+
+- AWS account with necessary IAM permissions
+- GitHub secrets configured:
+  - `AWS_ACCESS_KEY_ID`
+  - `AWS_SECRET_ACCESS_KEY`
+- Amazon ECR repository created (default: `simptimeserv-new`)
+
+### Setup Instructions
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+
+2. **Set up secrets in GitHub**
+
+Navigate to **Settings > Secrets and variables > Actions** and add:
+
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+
+3. **Push changes**
+
+- Push code changes to the `simple-time-service` directory to trigger the **application deployment workflow**.
+- Push any `.tf` file changes to trigger the **infrastructure workflow**.
+
+---
+
+## 🧱 Terraform Variables
+
+The following variables are used in Terraform (`variables.tf`):
+
+- `image_tag` – Docker image tag deployed to ECS
+
+These are passed dynamically during the `deploy.yml` workflow using:
+
+```bash
+terraform apply -var="image_tag=$IMAGE_TAG"
+```
+
+---
+
+## 📦 Technologies Used
+
+- **AWS ECS Fargate**
+- **Amazon ECR**
+- **Terraform**
+- **GitHub Actions**
+- **Docker**
+
+---
+
+## ✅ Good to Know
+
+- The ECS service is updated only if there's a change in the Docker image (via GitHub Actions).
+- Manual workflow dispatch is available for infrastructure updates (`terraform.yml`).
+- The Docker image is built from the source in `simple-time-service/`.
+
+---
+
+## 🧑‍💻 Contributors
+
+- VIJAYARAMA RAO SIRIGIRI
+- vijay49m@gmail.com
+- +91-6301773727
+
+---
+
