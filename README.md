@@ -288,7 +288,7 @@ terraform destroy
 
 ## 👨‍💻 Maintainers
 
-This module was crafted for internal DevOps projects but is reusable for any ECS-Fargate based deployment. Feel free to customize it for your app needs.
+This module was crafted for internal DevOps projects but is reusable for any ECS-Fargate based deployment for production grade we can add more features on this module and we can customize it for our app needs.
 
 ---
 
