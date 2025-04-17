@@ -367,6 +367,67 @@ A short SHA-based image tag prefixed with `ecs-`, e.g. `ecs-abc12`.
   - `AWS_SECRET_ACCESS_KEY`
 - Amazon ECR repository created (default: `simptimeserv-new`)
 
+---
+# Security Improvement: Terraform Assume Role
+
+- Use long-term AWS credentials (Access Key & Secret Key) with limited permissions.
+- Assume a role that has the necessary permissions to create/manage AWS resources.
+- Improve security by minimizing permissions tied to the IAM user.
+
+
+## 🔧 Prerequisites
+
+- An AWS IAM User with the following permission:
+  ```json
+  {
+    "Effect": "Allow",
+    "Action": "sts:AssumeRole",
+    "Resource": "arn:aws:iam::<ACCOUNT_ID>:role/<ROLE_NAME>"
+  }
+  ```
+
+- An IAM Role to assume, with a trust policy allowing your IAM user to assume it:
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::<ACCOUNT_ID>:user/<IAM_USER_NAME>"
+        },
+        "Action": "sts:AssumeRole"
+      }
+    ]
+  }
+  ```
+
+
+## 🧩 Terraform Provider Configuration
+
+Update your Terraform provider block as shown below:
+
+```hcl
+provider "aws" {
+  region     = "us-east-1"
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
+
+  assume_role {
+    role_arn     = "arn:aws:iam::<ACCOUNT_ID>:role/<ROLE_NAME>"
+    session_name = "terraform-session"
+  }
+}
+```
+## ✅ Best Practices
+
+- Never give full permissions to long-term credentials.
+- Rotate IAM access keys regularly.
+- Use environment variables or secure secrets management tools to store credentials.
+
+---
+
+
 ### Setup Instructions
 
 1. **Clone the repository**
