@@ -313,12 +313,12 @@ This project demonstrates:
 ├── .github/workflows       # GitHub Actions workflows
 │   ├── deploy.yml          # Triggers on app source code changes
 │   └── terraform.yml       # Triggers on infrastructure code changes
-├── ecs-fargate             # (Optional) Contains ECS-specific definitions if any
-├── simple-time-service     # Source code for the time service (Node.js, Python, etc.)
-├── main.tf                 # Terraform main configuration
-├── variables.tf            # Input variable definitions for Terraform
-├── versions.tf             # Terraform provider and version constraints
-├── README.md               # Project documentation (You're here!)
+├── ecs-fargate             
+├── simple-time-service     
+├── main.tf                 
+├── variables.tf            
+├── versions.tf             
+├── README.md               
 ```
 
 ---
