@@ -13,7 +13,7 @@ terraform {
     key    = "ecs-01/simpletimeservice/terraform.tfstate"
     region = "us-east-1"
     encrypt = true
-    use_lockfile = true
+    use_lockfile = true # here I am using latest state locking feature of Terraform
   }
 }
 
