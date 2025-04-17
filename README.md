@@ -2,8 +2,9 @@
 
 A lightweight Python Flask application that returns the current UTC timestamp and the IP address of the visitor. It is containerized using Docker and served via **Gunicorn** on port **80**.
 
-Public Hosted Image ID with root user: "vijay49m/simple-time-service:1.0.0"
-Public Hosted Image ID with non-root user: "vijay49m/simple-time-service:2.0.0"
+---
+- Public Hosted Image ID with root user: "vijay49m/simple-time-service:1.0.0"
+- Public Hosted Image ID with non-root user: "vijay49m/simple-time-service:2.0.0"
 
 ---
 
