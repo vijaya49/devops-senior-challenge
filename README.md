@@ -1,4 +1,4 @@
-# 🕒 Simple Time Service
+# 🕒 Task 1: Simple Time Service
 
 A lightweight Python Flask application that returns the current UTC timestamp and the IP address of the visitor. It is containerized using Docker and served via **Gunicorn** on port **80**.
 
@@ -165,7 +165,134 @@ docker rm <container_id>
 ## 📌 Notes
 
 - The application is designed for demonstration or internal use.
-- Use proper security, logging, and monitoring for production deployments.
+- We can Use proper security, logging, and monitoring for production deployments.
+
+
+
+---
+# 🚀 Task 2: ECS Fargate Terraform Module 
+
+This Terraform module (`ecs-fargate`) provisions a complete containerized application infrastructure on **AWS ECS with Fargate**, along with related resources like VPC, ALB, ACM, Route 53, IAM roles, and more.
+
+---
+
+## 📁 Project Structure
+
+```
+ecs-fargate/
+├── acm.tf           # SSL/TLS certificate via ACM
+├── ecr.tf           # ECR repository to store Docker images
+├── ecs.tf           # ECS cluster, task definitions, and services (Fargate)
+├── elb.tf           # Application Load Balancer (ALB)
+├── iam.tf           # IAM roles and policies
+├── outputs.tf       # Module outputs
+├── route53.tf       # DNS records in Route53
+├── sg.tf            # Security groups
+├── variables.tf     # Module input variables
+├── vpc.tf           # VPC, subnets, route tables, etc.
+├── simple-time-service/ # Application-specific files (if any)
+```
+
+Root:
+```
+main.tf             # Consumes the ecs-fargate module
+variables.tf        # Variables passed to the module
+versions.tf         # Required provider versions
+README.md           # You're here!
+```
+
+---
+
+## 🧩 What This Module Does
+
+This module will:
+
+- Create a **VPC** with public/private subnets across AZs
+- Provision an **ECR** repository for your Docker image
+- Set up an **ECS Cluster** with **Fargate** tasks
+- Deploy your container using **ECS service**
+- Attach a **Load Balancer** to route traffic
+- Manage **IAM roles** for ECS execution
+- Configure **SSL certificates** using ACM
+- Set up **DNS** in Route53
+- Secure everything using **Security Groups**
+
+---
+
+## 📦 How to Use
+
+Here’s how to call the module in your root `main.tf`:
+
+```hcl
+module "ecs_fargate" {
+  source              = "./ecs-fargate"
+  app_name            = "SimpTimeServ-new"
+  region              = "us-east-1"
+  domain_name         = "simpletimeservice.cloudvj.in"
+  hosted_zone_id      = "Z03659932DLDYYQJTHLW"
+  container_port      = 80
+  image_tag           = var.image_tag
+}
+```
+
+📝 Make sure your `variables.tf` contains the required `image_tag` variable.
+
+---
+
+## ✅ Prerequisites
+
+- Terraform CLI installed
+- AWS credentials configured (`~/.aws/credentials` or via env variables)
+- A hosted zone already set up in **Route 53**
+- An image pushed to **ECR** with the tag passed in `image_tag`
+
+---
+
+## 🛠️ How to Deploy
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+---
+
+## 📤 Outputs
+
+After successful deployment, the module can output useful info such as:
+
+- Load balancer DNS
+- ECS service name
+- VPC ID
+- Subnet IDs
+
+---
+
+## 🧹 Cleanup
+
+To tear down the infrastructure:
+
+```bash
+terraform destroy
+```
+
+---
+
+## 📎 Notes
+
+- This setup uses **Fargate launch type**, so you don’t need to manage EC2 instances.
+- The SSL certificate is validated via **DNS using Route 53**, so ensure your domain is in the correct hosted zone.
+
+---
+
+## 👨‍💻 Maintainers
+
+This module was crafted for internal DevOps projects but is reusable for any ECS-Fargate based deployment. Feel free to customize it for your app needs.
+
+---
+
+
 
 
 ## 📄 License
