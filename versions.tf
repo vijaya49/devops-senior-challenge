@@ -10,7 +10,7 @@ terraform {
 
   backend "s3" {
     bucket = "my-reception-memories"
-    key    = "ecs-01/simpletimeservice/terraform.tfstate"
+    key    = "ecs-01/simpletimeservice/terraform.tfstate" # here we need to change the bucket name based on requirement
     region = "us-east-1"
     encrypt = true
     use_lockfile = true # here I am using latest state locking feature of Terraform

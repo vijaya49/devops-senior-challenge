@@ -22,7 +22,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_subnet" "public" {
   count             = 2
   vpc_id            = aws_vpc.main.id
-  cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index)
+  cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index) # it will create two public subnets with cidr 192.168.0.0/24 & 192.168.1.0/24
   availability_zone = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = true
 
@@ -35,7 +35,7 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
   count             = 2
   vpc_id            = aws_vpc.main.id
-  cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index + 2)
+  cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index + 2) # it will create two private subnets with cidr 192.168.2.0/24 & 192.168.3.0/24
   availability_zone = data.aws_availability_zones.available.names[count.index]
 
   tags = {

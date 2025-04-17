@@ -75,7 +75,7 @@ resource "aws_iam_role_policy" "ecs_task_s3_access" {
       {
         Effect = "Allow",
         Action = ["s3:GetObject"],
-        Resource = "arn:aws:s3:::your-bucket-name/*"
+        Resource = "arn:aws:s3:::your-bucket-name/*" # here we need to pass actual bucket policy arn
       }
     ]
   })
