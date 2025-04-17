@@ -162,7 +162,6 @@ docker rm <container_id>
 
 
 
----
 
 ## 📌 Notes
 
