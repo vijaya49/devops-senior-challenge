@@ -326,6 +326,12 @@ This project demonstrates:
 
 ## 🚀 Workflows
 
+
+![GitHub](https://github.com/user-attachments/assets/3d7d170b-554b-4dea-afe7-c7a2342c04e0)
+
+
+
+
 ### 1. **Application Deployment Workflow (`deploy.yml`)**
 
 **Trigger:**  
